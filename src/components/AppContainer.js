@@ -4,15 +4,18 @@ import { bindActionCreators } from 'redux';
 import * as deckAction from '../actions/deckActions';
 
 const mapStateToProps = (state) => {
-  console.log('map to state to props, state.text: ' + state.text);
+  console.log('map to state to props, state.deckId: ', state);
   return {
-    text: state.text
+    deckId: state.deckId
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   console.log('map to dispatch to props');
-  return bindActionCreators(deckAction, dispatch);
+  return {
+    dispatch,
+    ...bindActionCreators(deckAction, dispatch)
+  }
 }
 
 const AppContainer = connect(

@@ -1,19 +1,12 @@
-import { createStore, compose } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 // import the root reducer
 import rootReducer from './reducers/index'
 
-// create an object for the default data
-const defaultState = {
-  deckId: '',
-  text: ''
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-)
-
-const store = createStore(rootReducer, defaultState, enhancers)
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 if(module.hot) {
   module.hot.accept('./reducers/', () => {
