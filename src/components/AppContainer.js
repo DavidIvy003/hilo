@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import App from './App';
 import { bindActionCreators } from 'redux';
-import HelloAction from './actions/helloAction';
+import HelloAction from '../actions/helloAction';
 
 const mapStateToProps = (state) => {
   console.log('map to state to props, state.text: ' + state.text);

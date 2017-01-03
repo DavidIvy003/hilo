@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import '../styles/App.css';
 
 class App extends Component {
   onChangeHandler(event) {
@@ -12,7 +11,6 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Hello World React JS, Redux, and create-react-app</h2>
         </div>
         <p className="App-intro">
