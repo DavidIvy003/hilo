@@ -3,9 +3,16 @@ import '../styles/App.css'
 import Deck from './Deck'
 
 class App extends Component {
-  onChangeHandler(event) {
-    console.log('from onChangeHandler App.js')
-    this.props.onChange(event.target.value)
+  componentDidMount() {
+    console.log('fetch deck');
+    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+      .then((response) => {
+        console.log(response)
+        return response.json();
+      })
+      .then(function(data) {
+        console.log(data);
+      })
   }
 
   render() {

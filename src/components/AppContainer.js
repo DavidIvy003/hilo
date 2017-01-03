@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import App from './App';
 import { bindActionCreators } from 'redux';
-import HelloAction from '../actions/helloAction';
+import * as deckAction from '../actions/deckActions';
 
 const mapStateToProps = (state) => {
   console.log('map to state to props, state.text: ' + state.text);
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   console.log('map to dispatch to props');
-  return bindActionCreators({onChange: HelloAction}, dispatch);
+  return bindActionCreators(deckAction, dispatch);
 }
 
 const AppContainer = connect(

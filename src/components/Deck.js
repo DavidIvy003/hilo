@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
 class Deck extends Component {
-  componentDidMount() {
-    console.log('fetch deck');
-    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-      .then((response) => {
-        console.log(response)
-      })
-  }
 
   render() {
     return (
