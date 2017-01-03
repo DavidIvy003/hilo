@@ -1,4 +1,4 @@
-const HelloReducer = (state, action) => {
+const HelloReducer = (state = {}, action) => {
   switch (action.type) {
     case 'CHANGE_TEXT':
       console.log('CHANGE_TEXT from HelloReducer');
