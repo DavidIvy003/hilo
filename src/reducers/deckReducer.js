@@ -7,14 +7,14 @@ const newGame = (state, id) => {
 
 const drawCard = (state, card) => {
   let newState = Object.assign({}, state)
-  newState.card = {}
-  newState.card.value = card.value
-  newState.card.image = card.image
-  newState.card = card
+  newState.previousCard = state.currentCard
+  newState.currentCard = {}
+  newState.currentCard.value = card.value
+  newState.currentCard.image = card.image
   return newState
 }
 
-const deckReducer = (state = {card: {}}, action) => {
+const deckReducer = (state = {currentCard: {}}, action) => {
   switch (action.type) {
     case 'NEW_DECK':
       console.log('NEW_DECK from deckReducer', action.deckId, state, newGame(state, action.deckId))

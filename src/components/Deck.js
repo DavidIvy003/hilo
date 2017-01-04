@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
   console.log('map to state to props, state.deckId: ', state);
   return {
     deckId: state.deck.id,
-    card: state.deck.card
+    card: state.deck.currentCard
   }
 };
 
