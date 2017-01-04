@@ -7,8 +7,7 @@ const Deck = props => (
       <h1>Higher or Lower?</h1>
     </div>
     <p className="App-intro">
-      Hello, {props.deckId}
-      {' '}
+      <img src={props.card.image} />
     </p>
   </div>
 )
@@ -16,7 +15,8 @@ const Deck = props => (
 const mapStateToProps = (state) => {
   console.log('map to state to props, state.deckId: ', state);
   return {
-    deckId: state.deck.id
+    deckId: state.deck.id,
+    card: state.deck.card
   }
 };
 
