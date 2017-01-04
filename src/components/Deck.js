@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 
 const Deck = props => (
   <div className="App">
     <div className="App-header">
-      <h2>Hello World React JS, Redux, and create-react-app</h2>
+      <h1>Higher or Lower?</h1>
     </div>
     <p className="App-intro">
       Hello, {props.deckId}
