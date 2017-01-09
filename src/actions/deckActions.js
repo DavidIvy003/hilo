@@ -1,3 +1,9 @@
+const CARD_ORDER = ['ACE', 'KING', 'QUEEN', 'JACK', '10', '9', '8', '7', '6', '5', '4', '3', '2']
+
+const compareCards = (newCard, oldCard) => {
+  return CARD_ORDER.indexOf(newCard) > CARD_ORDER.indexOf(oldCard) ? -1 : 1
+}
+
 const newDeckAction = (deckId) => ({
   type: 'NEW_DECK',
   deckId: deckId
@@ -8,12 +14,14 @@ const drawCardAction = (card) => ({
   card: card
 })
 
-const guessAction = (guess, newCard, lastCard) => ({
-  type: 'GUESS',
-  guess: guess,
-  newCard: newCard,
-  lastCard: lastCard
-})
+const guessAction = (guess, newCard, lastCard) => {
+  let actionType = compareCards(newCard, lastCard) === guess ? 'CORRECT_GUESS' : 'INCORRECT_GUESS'
+  console.log('actionType', actionType)
+  return {
+    type: actionType,
+    points: 1,
+  }
+}
 
 export const drawCard = (deckId, guess = 0, lastCard) => {
   console.log('drawCard', deckId, guess)
