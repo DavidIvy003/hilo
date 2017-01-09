@@ -20,6 +20,7 @@ const guessAction = (guess, newCard, lastCard) => {
   return {
     type: actionType,
     points: 1,
+    newCard: newCard
   }
 }
 

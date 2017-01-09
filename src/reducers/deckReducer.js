@@ -1,7 +1,8 @@
 const newGame = (state, id) => {
   return Object.assign({}, {
     id,
-    card: {}
+    currentCard: {},
+    faceUpPile: []
   })
 }
 
@@ -11,10 +12,17 @@ const drawCard = (state, card) => {
   newState.currentCard = {}
   newState.currentCard.value = card.value
   newState.currentCard.image = card.image
+  newState.faceUpPile.push(card.value)
   return newState
 }
 
-const deckReducer = (state = {currentCard: {}}, action) => {
+const clearFaceUpStack = (state, card) => {
+  let newState = Object.assign({}, state)
+  newState.faceUpPile = [card]
+  return newState
+}
+
+const deckReducer = (state = {currentCard: {}, faceUpPile: []}, action) => {
   switch (action.type) {
     case 'NEW_DECK':
       console.log('NEW_DECK from deckReducer', action.deckId, state, newGame(state, action.deckId))
@@ -22,6 +30,9 @@ const deckReducer = (state = {currentCard: {}}, action) => {
     case 'DRAW_CARD':
       console.log('DRAW_CARD from deckReducer', action)
       return drawCard(state, action.card)
+    case 'INCORRECT_GUESS':
+      console.log('CORRECT_GUESS from deckReducer', action)
+      return clearFaceUpStack(state, action.newCard)
     default:
       console.log('Default value from deckReducer')
       return state;
