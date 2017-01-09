@@ -17,7 +17,6 @@ const drawCardAction = (card, remaining) => ({
 
 const guessAction = (guess, newCard, lastCard, faceUpPile) => {
   let actionType = compareCards(newCard, lastCard) === guess ? 'CORRECT_GUESS' : 'INCORRECT_GUESS'
-  console.log('actionType', actionType)
   return {
     type: actionType,
     points: faceUpPile.length - 1,
@@ -26,7 +25,6 @@ const guessAction = (guess, newCard, lastCard, faceUpPile) => {
 }
 
 export const drawCard = (deckId, guess = 0, lastCard, faceUpPile) => {
-  console.log('drawCard', deckId, guess)
   return function (dispatch) {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
       .then(response => response.json())
@@ -42,7 +40,6 @@ export const drawCard = (deckId, guess = 0, lastCard, faceUpPile) => {
 
 export const newGame = () => {
   return function (dispatch) {
-
     return fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(response => response.json())
       .then(data => {
@@ -51,6 +48,3 @@ export const newGame = () => {
       })
   }
 }
-
-export const guessHigher = (deckId, card, faceUpPile) => drawCard(deckId, 1, card, faceUpPile)
-export const guessLower = (deckId, card, faceUpPile) => drawCard(deckId, -1, card, faceUpPile)
