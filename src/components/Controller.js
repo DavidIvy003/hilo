@@ -6,10 +6,10 @@ import * as controllerActions from '../actions/deckActions';
 
 const Controller = props => (
   <div>
-    <button onClick={() => props.guessHigher(props.deckId, props.card)}>
+    <button onClick={() => props.guessHigher(props.deckId, props.card, props.faceUpPile)}>
       Higher
     </button>
-    <button onClick={() => props.guessLower(props.deckId, props.card)}>
+    <button onClick={() => props.guessLower(props.deckId, props.card, props.faceUpPile)}>
       Lower
     </button>
   </div>
@@ -19,7 +19,8 @@ const mapStateToProps = (state) => {
   console.log('map to state to props, state.deckId: ', state);
   return {
     deckId: state.deck.id,
-    card: state.deck.currentCard.value
+    card: state.deck.currentCard.value,
+    faceUpPile: state.deck.faceUpPile,
   }
 }
 

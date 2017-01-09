@@ -14,17 +14,17 @@ const drawCardAction = (card) => ({
   card: card
 })
 
-const guessAction = (guess, newCard, lastCard) => {
+const guessAction = (guess, newCard, lastCard, faceUpPile) => {
   let actionType = compareCards(newCard, lastCard) === guess ? 'CORRECT_GUESS' : 'INCORRECT_GUESS'
   console.log('actionType', actionType)
   return {
     type: actionType,
-    points: 1,
+    points: faceUpPile.length - 1,
     newCard: newCard
   }
 }
 
-export const drawCard = (deckId, guess = 0, lastCard) => {
+export const drawCard = (deckId, guess = 0, lastCard, faceUpPile) => {
   console.log('drawCard', deckId, guess)
   return function (dispatch) {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
@@ -33,7 +33,7 @@ export const drawCard = (deckId, guess = 0, lastCard) => {
         let card = data.cards[0]
         dispatch(drawCardAction(card))
         if (guess !== 0) {
-          dispatch(guessAction(guess, card.value, lastCard))
+          dispatch(guessAction(guess, card.value, lastCard, faceUpPile))
         }
       })
   }
@@ -51,5 +51,5 @@ export const createDeck = () => {
   }
 }
 
-export const guessHigher = (deckId, card) => drawCard(deckId, 1, card)
-export const guessLower = (deckId, card) => drawCard(deckId, -1, card)
+export const guessHigher = (deckId, card, faceUpPile) => drawCard(deckId, 1, card, faceUpPile)
+export const guessLower = (deckId, card, faceUpPile) => drawCard(deckId, -1, card, faceUpPile)
