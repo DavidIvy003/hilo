@@ -6,6 +6,7 @@ const Score = props => (
   <div>
     <div>Player { props.currentPlayer }'s turn</div>
     <div>Correct Guesses: { props.currentGuesses }</div>
+    <div>Cards Remaining: { props.cardsRemaining }</div>
     <div>Face Up Pile: { props.faceUpPileCount }</div>
     <div>Player 1: { props.player1 }</div>
     <div>Player 2: { props.player2 }</div>
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => {
     currentPlayer: state.game.currentPlayer + 1,
     currentGuesses: state.game.currentGuesses,
     faceUpPileCount: state.deck.faceUpPile.length,
+    cardsRemaining: state.deck.remaining,
   }
 }
 

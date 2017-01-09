@@ -9,9 +9,10 @@ const newGameAction = (deckId) => ({
   deckId: deckId
 })
 
-const drawCardAction = (card) => ({
+const drawCardAction = (card, remaining) => ({
   type: 'DRAW_CARD',
-  card: card
+  card: card,
+  remaining: remaining
 })
 
 const guessAction = (guess, newCard, lastCard, faceUpPile) => {
@@ -31,7 +32,7 @@ export const drawCard = (deckId, guess = 0, lastCard, faceUpPile) => {
       .then(response => response.json())
       .then(data => {
         let card = data.cards[0]
-        dispatch(drawCardAction(card))
+        dispatch(drawCardAction(card, data.remaining))
         if (guess !== 0) {
           dispatch(guessAction(guess, card.value, lastCard, faceUpPile))
         }

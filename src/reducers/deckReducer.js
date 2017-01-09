@@ -11,8 +11,9 @@ const newDeck = (state, id) => {
   return newState
 }
 
-const drawCard = (state, card) => {
+const drawCard = (state, card, remaining) => {
   let newState = Object.assign({}, state)
+  newState.remaining = remaining
   newState.previousCard = state.currentCard
   newState.currentCard = {}
   newState.currentCard.value = card.value
@@ -34,7 +35,7 @@ const deckReducer = (state = DEFAULT_STATE, action) => {
       return newDeck(state, action.deckId)
     case 'DRAW_CARD':
       console.log('DRAW_CARD from deckReducer', action)
-      return drawCard(state, action.card)
+      return drawCard(state, action.card, action.remaining)
     case 'INCORRECT_GUESS':
       console.log('CORRECT_GUESS from deckReducer', action)
       return clearFaceUpStack(state, action.newCard)
