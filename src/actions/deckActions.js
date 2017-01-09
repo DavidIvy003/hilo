@@ -4,8 +4,8 @@ const compareCards = (newCard, oldCard) => {
   return CARD_ORDER.indexOf(newCard) > CARD_ORDER.indexOf(oldCard) ? -1 : 1
 }
 
-const newDeckAction = (deckId) => ({
-  type: 'NEW_DECK',
+const newGameAction = (deckId) => ({
+  type: 'NEW_GAME',
   deckId: deckId
 })
 
@@ -39,14 +39,14 @@ export const drawCard = (deckId, guess = 0, lastCard, faceUpPile) => {
   }
 }
 
-export const createDeck = () => {
+export const newGame = () => {
   return function (dispatch) {
 
     return fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(response => response.json())
       .then(data => {
         dispatch(drawCard(data.deck_id))
-        dispatch(newDeckAction(data.deck_id))
+        dispatch(newGameAction(data.deck_id))
       })
   }
 }

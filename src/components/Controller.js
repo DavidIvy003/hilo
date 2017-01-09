@@ -17,6 +17,9 @@ const Controller = props => (
             disabled={props.currentGuesses < 3}>
       Pass Turn
     </button>
+    <button onClick={() => props.newGame()}>
+      New Game
+    </button>
   </div>
 )
 

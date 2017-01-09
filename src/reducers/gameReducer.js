@@ -1,3 +1,9 @@
+const DEFAULT_STATE = {
+  currentPlayer: 0,
+  currentGuesses: 0,
+  scores: { 0: 0, 1: 0 }
+}
+
 const getScores = (oldScores, player, points) => {
   let scores = Object.assign({}, oldScores)
   scores[player] = oldScores[player] + points
@@ -24,8 +30,10 @@ const passTurn = (state) => {
   return newState
 }
 
-const gameReducer = (state = { currentPlayer: 0, currentGuesses: 0, scores: { 0: 0, 1: 0 }}, action) => {
+const gameReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
+    case 'NEW_GAME':
+      return DEFAULT_STATE
     case 'INCORRECT_GUESS':
       console.log('GUESS', JSON.stringify(action))
       return incorrectGuess(state, action.points)

@@ -1,9 +1,14 @@
-const newGame = (state, id) => {
-  return Object.assign({}, {
-    id,
-    currentCard: {},
-    faceUpPile: []
-  })
+const DEFAULT_STATE = {
+  id: '',
+  currentCard: {},
+  previousCard: {},
+  faceUpPile: []
+}
+
+const newDeck = (state, id) => {
+  let newState = Object.assign({}, DEFAULT_STATE)
+  newState.id = id
+  return newState
 }
 
 const drawCard = (state, card) => {
@@ -12,7 +17,7 @@ const drawCard = (state, card) => {
   newState.currentCard = {}
   newState.currentCard.value = card.value
   newState.currentCard.image = card.image
-  newState.faceUpPile.push(card.value)
+  newState.faceUpPile = [...state.faceUpPile, card.value]
   return newState
 }
 
@@ -22,11 +27,11 @@ const clearFaceUpStack = (state, card) => {
   return newState
 }
 
-const deckReducer = (state = {currentCard: {}, faceUpPile: []}, action) => {
+const deckReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
-    case 'NEW_DECK':
-      console.log('NEW_DECK from deckReducer', action.deckId, state, newGame(state, action.deckId))
-      return newGame(state, action.deckId)
+    case 'NEW_GAME':
+      console.log('NEW_GAME from deckReducer', action.deckId, state, newDeck(state, action.deckId))
+      return newDeck(state, action.deckId)
     case 'DRAW_CARD':
       console.log('DRAW_CARD from deckReducer', action)
       return drawCard(state, action.card)

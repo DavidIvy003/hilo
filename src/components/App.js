@@ -3,12 +3,12 @@ import '../styles/App.css'
 import Deck from './Deck'
 import Controller from './Controller'
 import Score from './Score'
-import { createDeck } from '../actions/deckActions'
+import { newGame } from '../actions/deckActions'
 
 class App extends Component {
   componentDidMount() {
     console.log('props', this.props)
-    this.props.dispatch(createDeck())
+    this.props.dispatch(newGame())
   }
 
   render() {
