@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../styles/App.css'
 import Deck from './Deck'
 import Controller from './Controller'
+import Score from './Score'
 import { createDeck } from '../actions/deckActions'
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
       <div className="App">
         <Deck />
         <Controller />
+        <Score />
       </div>
     )
   }
