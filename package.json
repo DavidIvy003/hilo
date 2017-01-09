@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "enzyme": "^2.7.0",
     "nock": "^9.0.2",
     "react-scripts": "0.8.4",
     "redux-mock-store": "^1.2.1"
