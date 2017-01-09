@@ -1,6 +1,6 @@
 const DEFAULT_STATE = {
   currentPlayer: 0,
-  currentGuesses: 0,
+  correctGuesses: 0,
   scores: { 0: 0, 1: 0 }
 }
 
@@ -13,20 +13,20 @@ const getScores = (oldScores, player, points) => {
 const incorrectGuess = (state, points) => {
   let newState = Object.assign({}, state)
   newState.scores = getScores(state.scores, state.currentPlayer, points)
-  newState.currentGuesses = 0
+  newState.correctGuesses = 0
   return newState
 }
 
 const correctGuess = (state) => {
   let newState = Object.assign({}, state)
-  newState.currentGuesses = state.currentGuesses + 1
+  newState.correctGuesses = state.correctGuesses + 1
   return newState
 }
 
 const passTurn = (state) => {
   let newState = Object.assign({}, state)
   newState.currentPlayer = state.currentPlayer === 0 ? 1 : 0
-  newState.currentGuesses = 0
+  newState.correctGuesses = 0
   return newState
 }
 

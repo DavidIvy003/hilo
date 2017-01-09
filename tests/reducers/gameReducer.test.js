@@ -6,7 +6,7 @@ describe('deck reducer', () => {
       reducer(undefined, {})
     ).toEqual({
       currentPlayer: 0,
-      currentGuesses: 0,
+      correctGuesses: 0,
       scores: { 0: 0, 1: 0 }
     })
   })
@@ -19,7 +19,7 @@ describe('deck reducer', () => {
       })
     ).toEqual({
       currentPlayer: 0,
-      currentGuesses: 0,
+      correctGuesses: 0,
       scores: { 0: 0, 1: 0 }
     })
   })
@@ -28,7 +28,7 @@ describe('deck reducer', () => {
     expect(
       reducer({
         currentPlayer: 0,
-        currentGuesses: 0,
+        correctGuesses: 0,
         scores: { 0: 0, 1: 0 }
       }, {
         type: 'INCORRECT_GUESS',
@@ -36,7 +36,7 @@ describe('deck reducer', () => {
       })
     ).toEqual({
       currentPlayer: 0,
-      currentGuesses: 0,
+      correctGuesses: 0,
       scores: { 0: 2, 1: 0 }
     })
   })
@@ -45,14 +45,14 @@ describe('deck reducer', () => {
     expect(
       reducer({
         currentPlayer: 0,
-        currentGuesses: 0,
+        correctGuesses: 0,
         scores: { 0: 2, 1: 0 }
       }, {
         type: 'CORRECT_GUESS'
       })
     ).toEqual({
       currentPlayer: 0,
-      currentGuesses: 1,
+      correctGuesses: 1,
       scores: { 0: 2, 1: 0 }
     })
   })
@@ -61,14 +61,14 @@ describe('deck reducer', () => {
     expect(
       reducer({
         currentPlayer: 0,
-        currentGuesses: 3,
+        correctGuesses: 3,
         scores: { 0: 2, 1: 0 }
       }, {
         type: 'PASS_TURN'
       })
     ).toEqual({
       currentPlayer: 1,
-      currentGuesses: 0,
+      correctGuesses: 0,
       scores: { 0: 2, 1: 0 }
     })
   })
