@@ -14,9 +14,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Deck />
-        <Controller />
-        <Score />
+        <div className="App-header">
+          <h1>Higher or Lower?</h1>
+        </div>
+        <div className="App-container">
+          <div className="App-deck">
+            <Deck />
+          </div>
+          <div className="App-controller">
+            <Score />
+            <Controller />
+          </div>
+        </div>
       </div>
     )
   }
