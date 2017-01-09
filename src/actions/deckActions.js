@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 const CARD_ORDER = ['ACE', 'KING', 'QUEEN', 'JACK', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 
 const compareCards = (newCard, oldCard) => {
@@ -26,7 +28,7 @@ const guessAction = (guess, newCard, lastCard, faceUpPile) => {
 
 export const drawCard = (deckId, guess = 0, lastCard, faceUpPile) => {
   return function (dispatch) {
-    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
+    return fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
       .then(response => response.json())
       .then(data => {
         let card = data.cards[0]
