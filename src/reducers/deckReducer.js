@@ -1,5 +1,6 @@
 const DEFAULT_STATE = {
   id: '',
+  remaining: 52,
   currentCard: {},
   previousCard: {},
   faceUpPile: []
@@ -24,7 +25,7 @@ const drawCard = (state, card, remaining) => {
 
 const clearFaceUpStack = (state, card) => {
   let newState = Object.assign({}, state)
-  newState.faceUpPile = [card]
+  newState.faceUpPile = [card.value]
   return newState
 }
 
